@@ -22,11 +22,11 @@ const main = async () => {
 
   // commit updated version
   const octokit = github.getOctokit(githubToken);
-  console.log(await octokit.rest.repos.get());
-  await octokit.rest.repos.createOrUpdateFileContents({
+
+  const res = await octokit.rest.repos.createOrUpdateFileContents({
     owner: actor,
     repo: repo,
-    path: "package.json",
+    path: packageJsonPath,
     message: `chore: bump version to ${newVersion}`,
     content: Buffer.from(JSON.stringify(package)).toString("base64"),
     committer: {
@@ -38,6 +38,8 @@ const main = async () => {
       email: `${actor}@users.noreply.github.com`,
     },
   });
+
+  console.log(res);
 
   // set output
   core.setOutput("old_version", oldVersion);
