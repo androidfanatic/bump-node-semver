@@ -9058,14 +9058,6 @@ module.exports = eval("require")("encoding");
 
 /***/ }),
 
-/***/ 306:
-/***/ ((module) => {
-
-"use strict";
-module.exports = JSON.parse('{"name":"bump-node-semver","version":"1.0.0","description":"","main":"index.js","scripts":{"test":"echo \\"Error: no test specified\\" && exit 1","build":"npx ncc build index.js --license licenses.txt"},"repository":{"type":"git","url":"git+https://github.com/androidfanatic/bump-node-semver.git"},"keywords":[],"author":"","license":"ISC","bugs":{"url":"https://github.com/androidfanatic/bump-node-semver/issues"},"homepage":"https://github.com/androidfanatic/bump-node-semver#readme","dependencies":{"@actions/core":"^1.3.0","@actions/github":"^5.0.0","semver":"^7.3.5"}}');
-
-/***/ }),
-
 /***/ 2357:
 /***/ ((module) => {
 
@@ -9214,17 +9206,17 @@ const github = __nccwpck_require__(626);
 const semver = __nccwpck_require__(1047);
 const fs = __nccwpck_require__(5747);
 
-try {
+const main = async () => {
   const version = "0.0.4";
-  const package = __nccwpck_require__(306);
+  const package = await fs.readFile("./package.json");
   console.log("Orig version", JSON.stringify(package));
   const incrementedVersion = semver.inc(version, "patch");
   core.setOutput("version", incrementedVersion);
   const payload = JSON.stringify(github.context.payload, undefined, 2);
   console.log(`The event payload: ${payload}`);
-} catch (error) {
-  core.setFailed(error.message);
-}
+};
+
+main().catch((err) => core.setFailed(error.message));
 
 })();
 
