@@ -26,13 +26,6 @@ const main = async () => {
   await octokit.rest.repos.createOrUpdateFileContents({
     owner: actor,
     repo: repo,
-    path: packageJsonPath,
-    message: `chore: bump version to ${newVersion}`,
-    content: Buffer.from(JSON.stringify(package)).toString("base64"),
-    committer: {
-      name: actor,
-      email: `${actor}@users.noreply.github.com`,
-    },
     author: {
       name: actor,
       email: `${actor}@users.noreply.github.com`,
