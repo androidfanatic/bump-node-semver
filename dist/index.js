@@ -9209,9 +9209,10 @@ const { promises: fs } = __nccwpck_require__(5747);
 const main = async () => {
   // read input
   const githubToken = core.getInput("githubToken");
+  const actor = process.env.GITHUB_ACTOR;
+  const packageJsonPath = `${process.env.GITHUB_WORKSPACE}/package.json`;
 
   // read version
-  const packageJsonPath = `${process.env.GITHUB_WORKSPACE}/package.json`;
   const package = JSON.parse(await fs.readFile(packageJsonPath, "utf8"));
   const oldVersion = package.version;
 
@@ -9228,12 +9229,12 @@ const main = async () => {
     message: `chore: bump version to ${newVersion}`,
     content: Buffer.from(JSON.stringify(package)).toString("base64"),
     committer: {
-      name: `BumpNodeSemver Bot`,
-      email: "BumpNodeSemver@noreply",
+      name: actor,
+      email: `${actor}@users.noreply.github.com`,
     },
     author: {
-      name: `BumpNodeSemver Bot`,
-      email: "BumpNodeSemver@noreply",
+      name: actor,
+      email: `${actor}@users.noreply.github.com`,
     },
   });
 
