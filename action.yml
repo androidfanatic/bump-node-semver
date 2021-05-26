@@ -1,5 +1,9 @@
 name: 'BumpNodeSemver'
 description: 'Automatically bump (increment) the semantic versioning of a nodejs project'
+inputs:
+  githubToken:
+    description: The github token for committing back updated version
+    required: true
 outputs:
   oldVersion:
     description: 'The previous version'

@@ -2,6 +2,12 @@
 
 This action automatically bumps (increments) the semantic versioning of a nodejs project
 
+## Inputs:
+
+### `githubToken`
+
+The github token for committing back updated version.
+
 ## Outputs
 
 ### `oldVersion`
