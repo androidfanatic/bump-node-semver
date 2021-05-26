@@ -9208,7 +9208,7 @@ const { promises: fs } = __nccwpck_require__(5747);
 
 const main = async () => {
   // read input
-  const githubToken = core.getInput("GITHUB_TOKEN");
+  const githubToken = core.getInput("githubToken");
 
   // read version
   const packageJsonPath = `${process.env.GITHUB_WORKSPACE}/package.json`;
