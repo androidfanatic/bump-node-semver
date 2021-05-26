@@ -19,9 +19,7 @@ const main = async () => {
   package.version = newVersion;
 
   // commit updated version
-  const octokit = github.getOctokit(githubToken, {
-    log: console,
-  });
+  const octokit = github.getOctokit(githubToken);
 
   const updatePayload = {
     owner: actor,
