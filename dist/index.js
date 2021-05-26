@@ -9213,6 +9213,8 @@ const main = async () => {
   const packageJsonPath = `${process.env.GITHUB_WORKSPACE}/package.json`;
   const repo = process.env.GITHUB_REPOSITORY;
 
+  console.log(repo, actor);
+
   // read version
   const package = JSON.parse(await fs.readFile(packageJsonPath, "utf8"));
   const oldVersion = package.version;
