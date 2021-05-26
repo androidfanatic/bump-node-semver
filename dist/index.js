@@ -9217,7 +9217,7 @@ const fs = __nccwpck_require__(5747);
 try {
   const version = "0.0.4";
   const package = __nccwpck_require__(306);
-  console.log("Orig version", package.version);
+  console.log("Orig version", JSON.stringify(package));
   const incrementedVersion = semver.inc(version, "patch");
   core.setOutput("version", incrementedVersion);
   const payload = JSON.stringify(github.context.payload, undefined, 2);

@@ -6,7 +6,7 @@ const fs = require("fs");
 try {
   const version = "0.0.4";
   const package = require("./package.json");
-  console.log("Orig version", package.version);
+  console.log("Orig version", JSON.stringify(package));
   const incrementedVersion = semver.inc(version, "patch");
   core.setOutput("version", incrementedVersion);
   const payload = JSON.stringify(github.context.payload, undefined, 2);
