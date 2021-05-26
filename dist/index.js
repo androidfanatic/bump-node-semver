@@ -9208,7 +9208,7 @@ const fs = __nccwpck_require__(5747);
 
 const main = async () => {
   const version = "0.0.4";
-  const package = await fs.readFile(
+  const package = fs.readFileSync(
     `${process.env.GITHUB_WORKSPACE}/package.json`
   );
   console.log("Orig version", JSON.stringify(package));
