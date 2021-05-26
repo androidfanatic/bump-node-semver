@@ -5,7 +5,7 @@ const { promises: fs } = require("fs");
 
 const main = async () => {
   const version = "0.0.4";
-  const package = await fs.readFileSync(
+  const package = await fs.readFile(
     `${process.env.GITHUB_WORKSPACE}/package.json`
   );
   console.log("Orig version", JSON.stringify(package));
