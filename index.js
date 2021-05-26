@@ -4,13 +4,13 @@ const semver = require("semver");
 const { promises: fs } = require("fs");
 
 const main = async () => {
-  const version = "0.0.4";
   const package = JSON.parse(
     await fs.readFile(`${process.env.GITHUB_WORKSPACE}/package.json`, "utf8")
   );
-  console.log("Orig version", JSON.stringify(package));
-  const incrementedVersion = semver.inc(version, "patch");
-  core.setOutput("version", incrementedVersion);
+  const oldVersion = package.version;
+  const newVersion = semver.inc(oldVersion, "patch");
+  core.setOutput("old_version", oldVersion);
+  core.setOutput("new_version", newVersion);
   const payload = JSON.stringify(github.context.payload, undefined, 2);
   console.log(`The event payload: ${payload}`);
 };

@@ -4,7 +4,11 @@ This action automatically bumps (increments) the semantic versioning of a nodejs
 
 ## Outputs
 
-### `version`
+### `oldVersion`
+
+The previous version
+
+### `newVersion`
 
 The incremented version
 
