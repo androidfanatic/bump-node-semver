@@ -5,7 +5,7 @@ const { promises: fs } = require("fs");
 
 const main = async () => {
   // read input
-  const githubToken = core.getInput("githubToken");
+  const githubToken = core.getInput("GITHUB_TOKEN");
 
   // read version
   const packageJsonPath = `${process.env.GITHUB_WORKSPACE}/package.json`;
