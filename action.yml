@@ -1,0 +1,8 @@
+name: 'BumpNodeSemver'
+description: 'Automatically bump (increment) the semantic versioning of a nodejs project'
+outputs:
+  version: # id of output
+    description: 'The incremented version'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
