@@ -24,7 +24,7 @@ const main = async () => {
   const octokit = github.getOctokit(githubToken);
   console.log(await octokit.rest.repos.get());
   await octokit.rest.repos.createOrUpdateFileContents({
-    owner: "BumpNodeSemver",
+    owner: actor,
     repo: repo,
     path: packageJsonPath,
     message: `chore: bump version to ${newVersion}`,
