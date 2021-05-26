@@ -9211,7 +9211,7 @@ const main = async () => {
   const githubToken = core.getInput("githubToken");
   const actor = "androidfanatic"; // process.env.GITHUB_ACTOR;
   const packageJsonPath = `${process.env.GITHUB_WORKSPACE}/package.json`;
-  const repo = process.env.GITHUB_REPOSITORY;
+  const repo = "bludot-rewards-app"; //process.env.GITHUB_REPOSITORY;
 
   // read version
   const package = JSON.parse(await fs.readFile(packageJsonPath, "utf8"));
