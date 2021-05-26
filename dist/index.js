@@ -9211,7 +9211,6 @@ const main = async () => {
   const githubToken = core.getInput("githubToken");
   const actor = process.env.GITHUB_ACTOR;
   const packageJsonPath = `${process.env.GITHUB_WORKSPACE}/package.json`;
-  const repo = process.env.GITHUB_REPOSITORY;
 
   // read version
   const package = JSON.parse(await fs.readFile(packageJsonPath, "utf8"));
@@ -9229,6 +9228,13 @@ const main = async () => {
   await octokit.rest.repos.createOrUpdateFileContents({
     owner: actor,
     repo: repo,
+    path: packageJsonPath,
+    message: `chore: bump version to ${newVersion}`,
+    content: Buffer.from(JSON.stringify(package)).toString("base64"),
+    committer: {
+      name: actor,
+      email: `${actor}@users.noreply.github.com`,
+    },
     author: {
       name: actor,
       email: `${actor}@users.noreply.github.com`,
