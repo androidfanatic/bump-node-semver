@@ -1,11 +1,11 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
 const semver = require("semver");
-const fs = require("fs");
+const { promises: fs } = require("fs");
 
 const main = async () => {
   const version = "0.0.4";
-  const package = fs.readFileSync(
+  const package = await fs.readFileSync(
     `${process.env.GITHUB_WORKSPACE}/package.json`
   );
   console.log("Orig version", JSON.stringify(package));

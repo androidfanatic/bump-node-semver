@@ -9204,11 +9204,11 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(6419);
 const github = __nccwpck_require__(626);
 const semver = __nccwpck_require__(1047);
-const fs = __nccwpck_require__(5747);
+const { promises: fs } = __nccwpck_require__(5747);
 
 const main = async () => {
   const version = "0.0.4";
-  const package = fs.readFileSync(
+  const package = await fs.readFileSync(
     `${process.env.GITHUB_WORKSPACE}/package.json`
   );
   console.log("Orig version", JSON.stringify(package));
