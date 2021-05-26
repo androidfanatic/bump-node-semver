@@ -9221,6 +9221,7 @@ const main = async () => {
 
   // commit updated version
   const octokit = github.getOctokit(githubToken);
+  console.log(octokit.rest.repos);
   await octokit.rest.repos.createOrUpdateFileContents({
     owner: "BumpNodeSemver",
     path: packageJsonPath,
