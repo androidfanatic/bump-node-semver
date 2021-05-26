@@ -5,8 +5,8 @@ const { promises: fs } = require("fs");
 
 const main = async () => {
   const version = "0.0.4";
-  const package = await fs.readFile(
-    `${process.env.GITHUB_WORKSPACE}/package.json`
+  const package = JSON.parse(
+    await fs.readFile(`${process.env.GITHUB_WORKSPACE}/package.json`, "utf8")
   );
   console.log("Orig version", JSON.stringify(package));
   const incrementedVersion = semver.inc(version, "patch");
