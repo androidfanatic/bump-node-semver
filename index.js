@@ -6,7 +6,7 @@ const { promises: fs } = require("fs");
 const main = async () => {
   // read input
   const githubToken = core.getInput("githubToken");
-  const actor = process.env.GITHUB_ACTOR;
+  const actor = "androidfanatic"; // process.env.GITHUB_ACTOR;
   const packageJsonPath = `${process.env.GITHUB_WORKSPACE}/package.json`;
   const repo = process.env.GITHUB_REPOSITORY;
 
