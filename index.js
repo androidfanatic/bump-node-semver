@@ -10,8 +10,6 @@ const main = async () => {
   const packageJsonPath = `${process.env.GITHUB_WORKSPACE}/package.json`;
   const repo = process.env.GITHUB_REPOSITORY;
 
-  console.log(repo, actor);
-
   // read version
   const package = JSON.parse(await fs.readFile(packageJsonPath, "utf8"));
   const oldVersion = package.version;
@@ -21,9 +19,11 @@ const main = async () => {
   package.version = newVersion;
 
   // commit updated version
-  const octokit = github.getOctokit(githubToken);
+  const octokit = github.getOctokit(githubToken, {
+    log: console,
+  });
 
-  const res = await octokit.rest.repos.createOrUpdateFileContents({
+  await octokit.rest.repos.createOrUpdateFileContents({
     owner: actor,
     repo: repo,
     path: packageJsonPath,
