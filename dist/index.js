@@ -9235,7 +9235,7 @@ const main = async () => {
   const updatePayload = {
     owner: actor,
     repo,
-    path: repoPath,
+    path: rawPath,
     message: `chore: bump version to ${newVersion}`,
     content: Buffer.from(JSON.stringify(package)).toString("base64"),
     committer: {
