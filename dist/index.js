@@ -9248,7 +9248,9 @@ const main = async () => {
     sha,
     path: rawPath,
     message: `chore: bump version to ${newVersion}`,
-    content: Buffer.from(JSON.stringify(package)).toString("base64"),
+    content: Buffer.from(JSON.stringify(package, undefined, 2)).toString(
+      "base64"
+    ),
     committer: {
       name: actor,
       email: `${actor}@users.noreply.github.com`,
@@ -9259,8 +9261,6 @@ const main = async () => {
     },
   };
   await octokit.rest.repos.createOrUpdateFileContents(updatePayload);
-
-  console.log(res);
 
   // set output
   core.setOutput("old_version", oldVersion);
