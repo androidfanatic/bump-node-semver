@@ -10,6 +10,7 @@ const main = async () => {
   const repoPath = `${process.env.GITHUB_WORKSPACE}/${rawPath}`;
   const [actor, repo] = process.env.GITHUB_REPOSITORY.split("/");
   const branch = process.env.GITHUB_REF;
+  const sha = process.env.GITHUB_SHA;
 
   console.log({
     branch,
@@ -34,6 +35,7 @@ const main = async () => {
     owner: actor,
     repo,
     branch,
+    sha,
     path: rawPath,
     message: `chore: bump version to ${newVersion}`,
     content: Buffer.from(JSON.stringify(package)).toString("base64"),
