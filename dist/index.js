@@ -9212,9 +9212,10 @@ const main = async () => {
   const rawPath = "package.json";
   const repoPath = `${process.env.GITHUB_WORKSPACE}/${rawPath}`;
   const [actor, repo] = process.env.GITHUB_REPOSITORY.split("/");
+  const branch = process.env.GITHUB_REF;
 
   console.log({
-    githubToken: githubToken.split("").join(" "),
+    branch,
     actor,
     repo,
     rawPath,
@@ -9235,6 +9236,7 @@ const main = async () => {
   const updatePayload = {
     owner: actor,
     repo,
+    branch,
     path: rawPath,
     message: `chore: bump version to ${newVersion}`,
     content: Buffer.from(JSON.stringify(package)).toString("base64"),
