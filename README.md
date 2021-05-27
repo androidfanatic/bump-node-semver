@@ -6,7 +6,7 @@ This action automatically bumps (increments) the semantic versioning of a nodejs
 
 ### `githubToken`
 
-The github token for committing back updated version.
+The github token for committing back updated version
 
 ## Outputs
 

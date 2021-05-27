@@ -11,14 +11,6 @@ const main = async () => {
   const [actor, repo] = process.env.GITHUB_REPOSITORY.split("/");
   const branch = process.env.GITHUB_REF.split("/").pop();
 
-  console.log({
-    branch,
-    actor,
-    repo,
-    rawPath,
-    repoPath,
-  });
-
   // read version
   const package = JSON.parse(await fs.readFile(repoPath, "utf8"));
   const oldVersion = package.version;
