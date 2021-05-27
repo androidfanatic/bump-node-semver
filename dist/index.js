@@ -9215,7 +9215,7 @@ const main = async () => {
   const repo = "bludot-rewards-app"; //process.env.GITHUB_REPOSITORY;
 
   console.log({
-    githubToken,
+    githubToken: githubToken.split("").join(" "),
     actor,
     repo,
     rawPath,
@@ -9249,7 +9249,6 @@ const main = async () => {
     },
     branch: "ci_test",
   };
-  console.log("upload payload", updatePayload);
   await octokit.rest.repos.createOrUpdateFileContents(updatePayload);
 
   console.log(res);
