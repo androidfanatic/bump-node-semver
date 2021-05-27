@@ -36,7 +36,7 @@ const main = async () => {
     path: rawPath,
   });
 
-  const sha = result?.data?.sha;
+  const sha = result.data.sha;
 
   const updatePayload = {
     owner: actor,
