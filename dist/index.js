@@ -9209,10 +9209,9 @@ const { promises: fs } = __nccwpck_require__(5747);
 const main = async () => {
   // read input
   const githubToken = core.getInput("githubToken");
-  const actor = "androidfanatic"; // process.env.GITHUB_ACTOR;
   const rawPath = "package.json";
   const repoPath = `${process.env.GITHUB_WORKSPACE}/${rawPath}`;
-  const repo = "bludot-rewards-app"; //process.env.GITHUB_REPOSITORY;
+  const [actor, repo] = process.env.GITHUB_REPOSITORY.split("/");
 
   console.log({
     githubToken: githubToken.split("").join(" "),
@@ -9247,7 +9246,6 @@ const main = async () => {
       name: actor,
       email: `${actor}@users.noreply.github.com`,
     },
-    branch: "ci_test",
   };
   await octokit.rest.repos.createOrUpdateFileContents(updatePayload);
 
