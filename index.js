@@ -10,7 +10,6 @@ const main = async () => {
   const repoPath = `${process.env.GITHUB_WORKSPACE}/${rawPath}`;
   const [actor, repo] = process.env.GITHUB_REPOSITORY.split("/");
   const branch = process.env.GITHUB_REF;
-  const sha = process.env.GITHUB_SHA;
 
   console.log({
     branch,
@@ -30,6 +29,14 @@ const main = async () => {
 
   // commit updated version
   const octokit = github.getOctokit(githubToken);
+
+  const result = await octokit.repos.getContent({
+    owner: actor,
+    repo,
+    path: rawPath,
+  });
+
+  const sha = result?.data?.sha;
 
   const updatePayload = {
     owner: actor,
