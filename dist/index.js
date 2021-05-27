@@ -9233,7 +9233,7 @@ const main = async () => {
   // commit updated version
   const octokit = github.getOctokit(githubToken);
 
-  const result = await octokit.repos.getContent({
+  const result = await octokit.rest.repos.getContent({
     owner: actor,
     repo,
     path: rawPath,
