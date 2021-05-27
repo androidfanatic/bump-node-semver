@@ -7,11 +7,20 @@ const main = async () => {
   // read input
   const githubToken = core.getInput("githubToken");
   const actor = "androidfanatic"; // process.env.GITHUB_ACTOR;
-  const packageJsonPath = `${process.env.GITHUB_WORKSPACE}/package.json`;
+  const rawPath = "package.json";
+  const repoPath = `${process.env.GITHUB_WORKSPACE}/${rawPath}`;
   const repo = "bludot-rewards-app"; //process.env.GITHUB_REPOSITORY;
 
+  console.log({
+    githubToken,
+    actor,
+    repo,
+    rawPath,
+    repoPath,
+  });
+
   // read version
-  const package = JSON.parse(await fs.readFile(packageJsonPath, "utf8"));
+  const package = JSON.parse(await fs.readFile(repoPath, "utf8"));
   const oldVersion = package.version;
 
   // bump version
@@ -24,7 +33,7 @@ const main = async () => {
   const updatePayload = {
     owner: actor,
     repo,
-    path: "package.json",
+    path: repoPath,
     message: `chore: bump version to ${newVersion}`,
     content: Buffer.from(JSON.stringify(package)).toString("base64"),
     committer: {
@@ -35,6 +44,7 @@ const main = async () => {
       name: actor,
       email: `${actor}@users.noreply.github.com`,
     },
+    branch: "ci_test",
   };
   console.log("upload payload", updatePayload);
   await octokit.rest.repos.createOrUpdateFileContents(updatePayload);
