@@ -9,7 +9,7 @@ const main = async () => {
   const rawPath = "package.json";
   const repoPath = `${process.env.GITHUB_WORKSPACE}/${rawPath}`;
   const [actor, repo] = process.env.GITHUB_REPOSITORY.split("/");
-  const branch = process.env.GITHUB_REF;
+  const branch = process.env.GITHUB_REF.split("/").pop();
 
   console.log({
     branch,
